@@ -22,10 +22,24 @@ Or install it yourself as:
 
 ## Usage
 
+### Rails
+
 You need to generate an initializer for ZQuickblox in order to config your Quickblox app:
 
 ```ruby
 rails generate zquickblox
+```
+
+### Others
+
+You need to config your Quickblox as below:
+
+```ruby
+ZQuickblox.configure do |config|
+  config.app_id      = ENV['QB_APP_ID'],
+  config.auth_key    = ENV['QB_AUTH_KEY'],
+  config.auth_secret = ENV['QB_AUTH_SECRET']
+end
 ```
 
 To create a new user, just call:
