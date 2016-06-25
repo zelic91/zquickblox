@@ -1,4 +1,4 @@
-# Zquickblox
+# ZQuickblox
 
 This gem is a Quickblox API client in Ruby. Normally, we will use Javascript or mobile SDK, but in some cases where server needs to control things, this gem will play its role.
 
@@ -25,7 +25,7 @@ Or install it yourself as:
 You need to generate an initializer for ZQuickblox in order to config your Quickblox app:
 
 ```ruby
-rails generate zquickblox:config
+rails generate zquickblox
 ```
 
 To create a new user, just call:
