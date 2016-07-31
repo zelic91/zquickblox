@@ -1,4 +1,5 @@
 require_relative "user/create_user_request"
+require_relative "user/delete_user_request"
 
 module ZQuickblox
   module User
@@ -10,6 +11,13 @@ module ZQuickblox
         run_request(request)
         user = User.new(ZQuickblox::Util.symbolize_keys(request.response_body["user"]))
         return user
+      end
+
+      def delete(id)
+        request = ZQuickblox::User::DeleteUserRequest.new(id)
+        run_request(request)
+        return true if request.response.status == 200
+        return false
       end
 
       def run_request(request)
