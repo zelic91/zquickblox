@@ -13,8 +13,8 @@ module ZQuickblox
         return user
       end
 
-      def delete(id)
-        request = ZQuickblox::User::DeleteUserRequest.new(id)
+      def find(login)
+        request = ZQuickblox::User::FindUserRequest.new(login)
         run_request(request)
         return true if request.response.status == 200
         return false
