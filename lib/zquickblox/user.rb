@@ -1,5 +1,5 @@
 require_relative "user/create_user_request"
-require_relative "user/delete_user_request"
+require_relative "user/find_user_request"
 
 module ZQuickblox
   module User
