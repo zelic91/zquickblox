@@ -16,8 +16,8 @@ module ZQuickblox
       def find(login)
         request = ZQuickblox::User::FindUserRequest.new(login)
         run_request(request)
-        return true if request.response.status == 200
-        return false
+        user = User.new(ZQuickblox::Util.symbolize_keys(request.response_body["user"]))
+        return user
       end
 
       def run_request(request)
