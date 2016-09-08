@@ -16,6 +16,7 @@ module ZQuickblox
       def find(login)
         request = ZQuickblox::User::FindUserRequest.new(login)
         run_request(request)
+        return nil if request.response.status == 404 
         user = User.new(ZQuickblox::Util.symbolize_keys(request.response_body["user"]))
         return user
       end

@@ -20,7 +20,7 @@ Or install it yourself as:
 
     $ gem install zquickblox
 
-## Usage
+## Config
 
 ### Rails
 
@@ -42,6 +42,8 @@ ZQuickblox.configure do |config|
 end
 ```
 
+## Usage
+
 To create a new user, just call:
 
 ```ruby
@@ -53,6 +55,13 @@ There are more params for you to set:
 ```ruby
 login, password, email, blob_id, external_user_id, facebook_id, twitter_id, full_name, phone, website
 ```
+
+To get a user by his login, just call:
+```ruby
+ZQuickblox::User.find("abc@email.com")
+```
+
+The result will be `nil` if the user doesn't exist. 
 
 ## Error handling
 
