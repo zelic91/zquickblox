@@ -2,7 +2,7 @@
 
 This gem is a Quickblox API client in Ruby. Normally, we will use Javascript or mobile SDK, but in some cases where server needs to control things, this gem will play its role.
 
-Currently this gem ONLY supports creating users on Quickblox (used for signing up user).
+Currently this gem ONLY supports creating users on Quickblox (used for signing up user) and creating / updating chat dialog (used for backend's need).
 
 ## Installation
 
@@ -62,6 +62,18 @@ ZQuickblox::User.find("abc@email.com")
 ```
 
 The result will be `nil` if the user doesn't exist. 
+
+To create a new dialog, just call:
+
+```ruby
+ZQuickblox::Dialog.create("user_login", "user_password", {type: 2, name: "Some dialog", occupants_ids: "ids of occupants separated by ,"})
+```
+
+To update a dialog (name, photo, occupants_ids), just call:
+
+```ruby
+ZQuickblox::Dialog.update("user_login", "user_password", "dialog id", {name: "Some dialog", occupants_ids: "ids of occupants separated by ,"})
+```
 
 ## Error handling
 
