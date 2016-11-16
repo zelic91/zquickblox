@@ -5,6 +5,8 @@ rvm:
   - jruby
   - 2.3.1
 
+install: gem install bundler
+
 script: 'bundle exec rake'
 
 notifications:
