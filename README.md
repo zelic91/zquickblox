@@ -1,4 +1,4 @@
-# ZQuickblox
+# ZQuickblox  [![Build Status](https://travis-ci.org/zelic91/zquickblox.svg?branch=master)](https://travis-ci.org/zelic91/zquickblox)
 
 This gem is a Quickblox API client in Ruby. Normally, we will use Javascript or mobile SDK, but in some cases where server needs to control things, this gem will play its role.
 
