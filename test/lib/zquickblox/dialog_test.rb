@@ -29,5 +29,6 @@ describe ZQuickblox::Dialog do
     dialog.id.wont_be_nil
     dialogs = ZQuickblox::Dialog.get(login, password, {id: dialog.id})
     assert_equal(dialogs.count, 1, "should return one item")
+    assert_equal(dialogs.first.occupants_ids.count, 1, "should have one occupant")
   end
 end

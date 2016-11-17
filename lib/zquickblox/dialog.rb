@@ -9,7 +9,10 @@ module ZQuickblox
         request = ZQuickblox::Dialog::GetDialogsRequest.new(params)
         run_request(login, password, request)
         response =  ZQuickblox::Util.symbolize_keys(request.response_body)
-        dialogs = response[:items].map { |item| Dialog.new(item) }
+        dialogs = []
+        response[:items].each do |item| 
+          dialogs << (Dialog.new(ZQuickblox::Util.symbolize_keys(item)))
+        end
         return dialogs
       end
 
