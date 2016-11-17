@@ -20,4 +20,14 @@ describe ZQuickblox::Dialog do
     dialog.id.wont_be_nil
     assert_equal(dialog.name, params[:name], "should update name")
   end
+
+  it "should get dialogs" do
+    login = "#{Time.now.to_i}"
+    password = "#{Time.now.to_i}"
+    user = ZQuickblox::User.create({login: login, password: password})
+    dialog = ZQuickblox::Dialog.create(login, password, {type: 2, occupants_ids: "", name: "Dialog name"})
+    dialog.id.wont_be_nil
+    dialogs = ZQuickblox::Dialog.get(login, password, {id: dialog.id})
+    assert_equal(dialogs.count, 1, "should return one item")
+  end
 end

@@ -1,9 +1,18 @@
 require_relative "dialog/create_dialog_request"
 require_relative "dialog/update_dialog_request"
+require_relative "dialog/get_dialogs_request"
 
 module ZQuickblox
   module Dialog
     class << self
+      def get(login, password, params)
+        request = ZQuickblox::Dialog::GetDialogsRequest.new(params)
+        run_request(login, password, request)
+        response =  ZQuickblox::Util.symbolize_keys(request.response_body)
+        dialogs = response[:items].map { |item| Dialog.new(item) }
+        return dialogs
+      end
+
       def create(login, password, params)
         dialog = Dialog.new(params)
         params = dialog.build_params
