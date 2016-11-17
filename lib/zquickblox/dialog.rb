@@ -5,7 +5,7 @@ require_relative "dialog/get_dialogs_request"
 module ZQuickblox
   module Dialog
     class << self
-      def get(login, password, params)
+      def get(login, password, params=nil)
         request = ZQuickblox::Dialog::GetDialogsRequest.new(params)
         run_request(login, password, request)
         response =  ZQuickblox::Util.symbolize_keys(request.response_body)
