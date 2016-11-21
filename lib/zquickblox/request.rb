@@ -37,7 +37,7 @@ module ZQuickblox
       @response_body = JSON.parse(@response.body) if @response.status != 404
 
       @errors = @response_body["errors"] if @response.status != 404
-      if @errors
+      if @errors && @errors.kind_of(Array)
         raise ZQuickblox::Error.new(messages: @errors["base"])
       end
 
