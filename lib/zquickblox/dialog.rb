@@ -27,7 +27,7 @@ module ZQuickblox
 
       def update(login, password, id, params)
         dialog = Dialog.new(params)
-        params = dialog.build_params
+        params = dialog.build_update_params
         request = ZQuickblox::Dialog::UpdateDialogRequest.new(id, params)
         run_request(login, password, request)
         dialog = Dialog.new(ZQuickblox::Util.symbolize_keys(request.response_body))
@@ -62,13 +62,25 @@ module ZQuickblox
       end
 
       def build_params
-        @params = {
+        {
           "type":              @type,
           "occupants_ids":     @occupants_ids,
           "name":              @name,
           "photo":             @photo    
         }
       end
+
+      def build_update_params
+        {
+          "type":              @type,
+          "push_all": {
+            "occupants_ids": @occupants_ids
+          },
+          "name":              @name,
+          "photo":             @photo    
+        }
+      end
+
     end
   end
 end
