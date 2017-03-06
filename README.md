@@ -61,7 +61,17 @@ To get a user by his login, just call:
 ZQuickblox::User.find("abc@email.com")
 ```
 
-The result will be `nil` if the user doesn't exist. 
+The result will be `nil` if the user doesn't exist.
+
+
+To delete user, call:
+
+```ruby
+ZQuickblox::User.delete("user_login", "user_password", "user_id")
+```
+
+The result will be `{}` if the account is deletable.
+
 
 To create a new dialog, just call:
 
