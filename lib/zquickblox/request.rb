@@ -34,10 +34,14 @@ module ZQuickblox
       put    if @method == :put
       delete if @method == :delete
 
-      @response_body = JSON.parse(@response.body) if @response.status != 404
+      if @response.status != 404 && @response.body.length > 1
+        @response_body = JSON.parse(@response.body)
+      else
+        @response_body = {}
+      end
 
       @errors = @response_body["errors"] if @response.status != 404
-      if @errors 
+      if @errors
         if @errors.kind_of?(Hash)
           raise ZQuickblox::Error.new(messages: @errors["base"]) if !@errors["base"].nil?
           message = ""
@@ -45,7 +49,7 @@ module ZQuickblox
             message += "; " + key
             message += " " + value.join(", ")
           end
-          raise ZQuickblox::Error.new(messages: message) 
+          raise ZQuickblox::Error.new(messages: message)
         end
       end
 

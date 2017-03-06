@@ -1,5 +1,6 @@
 require_relative "user/create_user_request"
 require_relative "user/find_user_request"
+require_relative "user/delete_user_request"
 
 module ZQuickblox
   module User
@@ -16,13 +17,20 @@ module ZQuickblox
       def find(login)
         request = ZQuickblox::User::FindUserRequest.new(login)
         run_request(request)
-        return nil if request.response.status == 404 
+        return nil if request.response.status == 404
         user = User.new(ZQuickblox::Util.symbolize_keys(request.response_body["user"]))
         return user
       end
 
-      def run_request(request)
-        session = ZQuickblox::Session.create
+      def delete(login, password, id)
+        request = ZQuickblox::User::DeleteUserRequest.new(id)
+        run_request(request, login, password)
+        return nil if request.response.status != 200
+        return {}
+      end
+
+      def run_request(request, login=nil, password=nil)
+        session = ZQuickblox::Session.create(login, password)
         request.header("QB-Token", session.token)
         request.execute
       end
